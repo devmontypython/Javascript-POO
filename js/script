@@ -1,0 +1,18 @@
+class Produto {
+
+    constructor() {
+        this.id = 1
+        this.nomeProduto = ''
+        this.preco = 0
+    }
+
+    adicionar() {
+        alert('Vamos adicionar um produto!')
+    }
+
+    excluir() {
+        
+    }
+}
+
+var produto = new Produto()
