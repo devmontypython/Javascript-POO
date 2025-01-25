@@ -6,11 +6,11 @@ class Produto {
         this.preco = 0
     }
 
-    adicionar() {
+    salvar() {
         alert('Vamos adicionar um produto!')
     }
 
-    excluir() {
+    cancelar() {
         
     }
 }
