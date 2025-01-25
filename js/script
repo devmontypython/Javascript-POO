@@ -2,12 +2,15 @@ class Produto {
 
     constructor() {
         this.id = 1
-        this.nomeProduto = ''
-        this.preco = 0
+        
     }
 
     salvar() {
-        alert('Vamos adicionar um produto!')
+        this.lerDados()
+    }
+
+    lerDados() {
+
     }
 
     cancelar() {
