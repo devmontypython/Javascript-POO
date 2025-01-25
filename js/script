@@ -13,11 +13,12 @@ class Produto {
             this.adicionar(produto)
         }
 
-        console.log(produto)
+        console.log(this.arrayProdutos)
     }
 
     adicionar(produto) {
         this.arrayProdutos.push(produto)
+        this.id++
     }
 
     lerDados() {
