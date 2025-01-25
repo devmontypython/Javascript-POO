@@ -8,6 +8,16 @@ class Produto {
 
     salvar() {
         let produto = this.lerDados()
+
+        if (this.validarCampos(produto) == true) {
+            this.adicionar(produto)
+        }
+
+        console.log(produto)
+    }
+
+    adicionar(produto) {
+        this.arrayProdutos.push(produto)
     }
 
     lerDados() {
@@ -18,6 +28,24 @@ class Produto {
         produto.preco = document.getElementById('preco').value
 
         return produto
+    }
+
+    validarCampos(produto) {
+        let msg = ''
+
+        if (produto.nomeProduto == '') {
+            msg += '- Informe o Nome do Produto \n'
+        }
+
+        if (produto.preco == '') {
+            msg += '- Informe o Preço do Produto'
+        }
+
+        if (msg != '') {
+            alert(msg)
+            return false
+        }            
+        return true
     }
 
     cancelar() {
