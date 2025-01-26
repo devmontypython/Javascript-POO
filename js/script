@@ -13,7 +13,42 @@ class Produto {
             this.adicionar(produto)
         }
 
-        console.log(this.arrayProdutos)
+        this.listarTabela()
+    }
+
+    listarTabela() {
+        let tbody = document.getElementById('tbody')
+        tbody.innerText = ''
+
+        for (let i = 0; i < this.arrayProdutos.length; i++) {
+            let tr = tbody.insertRow()
+
+            // inserir as linhas
+            let td_id = tr.insertCell()
+            let td_produto = tr.insertCell()
+            let td_valor = tr.insertCell()
+            let td_acoes = tr.insertCell()
+
+            // inserir  os dados do array tendo como referência lerDados()
+            td_id.innerText = this.arrayProdutos[i].id
+            td_produto.innerText = this.arrayProdutos[i].nomeProduto
+            td_valor.innerText = this.arrayProdutos[i].preco
+
+            // pra centralizar
+            td_id.classList.add('center')
+
+            // colocar a imagem edição
+            let imgEdit = document.createElement('img')
+            imgEdit.src = 'img/edit.png' 
+            // depois de criado o elemento, precisamos colocá-lo dentro de td_acoes: <td><img><td>
+            td_acoes.appendChild(imgEdit)
+
+            // colocar a imagem lixeira
+            let imgDelete = document.createElement('img')
+            imgDelete.src = 'img/bin.png'
+            td_acoes.appendChild(imgDelete)
+            
+        }
     }
 
     adicionar(produto) {
