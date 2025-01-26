@@ -3,6 +3,7 @@ class Produto {
     constructor() {
         this.id = 1
         this.arrayProdutos = []
+        this.editId = null
         
     }
 
@@ -10,7 +11,12 @@ class Produto {
         let produto = this.lerDados()
 
         if (this.validarCampos(produto) == true) {
-            this.adicionar(produto)
+            if (this.editId == null) {
+                this.adicionar(produto)
+            } else {
+                this.atualizar(this.editId, produto)
+            }
+            
         }
 
         this.listarTabela()
@@ -41,12 +47,15 @@ class Produto {
             // colocar a imagem edição
             let imgEdit = document.createElement('img')
             imgEdit.src = 'img/edit.png' 
+            //  produto = var produto = new Produto()
+            imgEdit.setAttribute("onclick", "produto.preparaEditacao("+ JSON.stringify(this.arrayProdutos[i]) +")")
             // depois de criado o elemento, precisamos colocá-lo dentro de td_acoes: <td><img><td>
             td_acoes.appendChild(imgEdit)
 
             // colocar a imagem lixeira
             let imgDelete = document.createElement('img')
             imgDelete.src = 'img/bin.png'
+            //  produto = var produto = new Produto()
             imgDelete.setAttribute("onclick", "produto.deletar("+ this.arrayProdutos[i].id +")") // setAttribute('evento', 'ação')
             td_acoes.appendChild(imgDelete)
             
@@ -54,8 +63,27 @@ class Produto {
     }
 
     adicionar(produto) {
+        produto.preco = parseFloat(produto.preco)
         this.arrayProdutos.push(produto)
         this.id++
+    }
+
+    atualizar(id, produto) {
+        for (let i = 0; i < this.arrayProdutos.length; i++) {
+            if (this.arrayProdutos[i].id == id) {
+                this.arrayProdutos[i].nomeProduto = produto.nomeProduto
+                this.arrayProdutos[i].preco = produto.preco 
+            }
+        }
+    }
+
+    preparaEditacao(dados) {
+        this.editId = dados.id
+
+        document.getElementById('produto').value = dados.nomeProduto
+        document.getElementById('preco').value = dados.preco
+
+        document.getElementById('btn1-uptodata').innerText = 'Atualizar'
     }
 
     lerDados() {
@@ -89,6 +117,9 @@ class Produto {
     cancelar() {
         document.getElementById('produto').value = ''
         document.getElementById('preco').value = ''
+
+        document.getElementById('btn1-uptodata').innerText = 'Salvar'
+        this.editId = null
     }
 
     deletar(id) {
