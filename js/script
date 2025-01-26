@@ -14,6 +14,7 @@ class Produto {
         }
 
         this.listarTabela()
+        this.cancelar()
     }
 
     listarTabela() {
@@ -85,7 +86,8 @@ class Produto {
     }
 
     cancelar() {
-        
+        document.getElementById('produto').value = ''
+        document.getElementById('preco').value = ''
     }
 }
 
